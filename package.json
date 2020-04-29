@@ -4,7 +4,8 @@
   "description": "A Dank Telegram Bot",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index",
+    "server" : "nodemon index"
   },
   "repository": {
     "type": "git",
@@ -21,5 +22,13 @@
   "bugs": {
     "url": "https://github.com/SidhantUnnithan/DankBot/issues"
   },
-  "homepage": "https://github.com/SidhantUnnithan/DankBot#readme"
+  "homepage": "https://github.com/SidhantUnnithan/DankBot#readme",
+  "dependencies": {
+    "mongoose": "^5.9.10",
+    "telegram-bot-api": "^1.3.3",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
 }
