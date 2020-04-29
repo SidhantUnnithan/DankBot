@@ -11,16 +11,19 @@ const {combine, timestamp, prettyPrint} = format;
 // utc : Boolean which defines whether time displayed will be in UTC
 // maxSize : Maximum Size of each log file after which a new file will be created. 'k', 'm', 'g' can be used
 // maxFiles : Maximum days after which the log archives will be deleted. 
+// level : Specifies the minimum level which will be logged to the file.
 
 var transport = new (winston.transports.DailyRotateFile)({
     filename: 'DankBot %DATE%.log',
     dirname : './logs/',
-    datePattern: 'HH:MM:SS DD-MM-YYYY',
+    datePattern: 'HH:MM DD-MM-YYYY',
     zippedArchive: true,
     utc : false,
     maxSize: '100m',
-    maxFiles: '10d'
+    maxFiles: '10d',
+    level : 'info',
 });
+
 
 // timezoned function which will be called by the logger formatter.
 
@@ -37,9 +40,8 @@ const timezoned = () => {
 const customLevels = {
     levels: {
       error: 0,
-      warning: 1,
-      message: 2,
-      info: 3
+      message: 1,
+      info: 2,
     },
 };
 
@@ -54,7 +56,10 @@ const logger = createLogger({
     ),
 
     transports : [
-        transport
+        transport,
+        new winston.transports.Console({
+            level : 'info'
+        })
     ]
 })
 
