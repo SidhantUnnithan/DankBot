@@ -1,0 +1,25 @@
+{
+  "name": "dankbot",
+  "version": "1.0.0",
+  "description": "A Dank Telegram Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SidhantUnnithan/DankBot.git"
+  },
+  "keywords": [
+    "TelegramBot",
+    "DankBot",
+    "Telegram",
+    "Bot"
+  ],
+  "author": "Sidhant Unnithan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SidhantUnnithan/DankBot/issues"
+  },
+  "homepage": "https://github.com/SidhantUnnithan/DankBot#readme"
+}
