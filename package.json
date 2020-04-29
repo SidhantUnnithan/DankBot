@@ -25,7 +25,7 @@
   "homepage": "https://github.com/SidhantUnnithan/DankBot#readme",
   "dependencies": {
     "mongoose": "^5.9.10",
-    "telegram-bot-api": "^1.3.3",
+    "node-telegram-bot-api": "^0.40.0",
     "winston": "^3.2.1",
     "winston-daily-rotate-file": "^4.4.2"
   },
