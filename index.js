@@ -100,7 +100,9 @@ bot.on('text', (msg, type) => {
         userid : msg.from.id,
         username : msg.from.username,
         text : msg.text
-    })
+    });
+
+    bot.sendMessage('That is not a valid command!')
 })
 
 
