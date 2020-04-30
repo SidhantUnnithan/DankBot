@@ -1,36 +1,17 @@
 // CORE MODULE IMPORTS
 const TelegramBot = require('node-telegram-bot-api');
-const mongoose = require('mongoose');
 
 
 // LOCAL IMPORTS
 const logger = require('./res/logger');
-const MongoAtlasURL = require('./config/key').MongoAtlasURL;
 const memeHandler = require('./res/commands/meme');
+// const BOT_TOKEN = require('./config/key').TelegramBotToken;
 
 
 // HEROKU SPECIFIC VARIABLES
 const PORT = process.env.PORT || 5000;
 const HOST = process.env.HOST;
-const BOT_TOKEN = process.env.BOT_TOKEN || require('./config/key').TelegramBotToken;
-
-
-// Connecting Mongoose with MongoDB Atlas using MongoAtlasURL from config/key.js file
-mongoose.connect(MongoAtlasURL)
-    .then(
-        logger.info({
-            message : 'Connected to MongoDB Atlas'
-        })   
-    )
-    .catch(err => {
-        logger.error({
-            message : 'Error while connecting to MongoDB Atlas',
-            file : 'index.js',
-            error : err
-        })
-    });
-
-const db = mongoose.connection;
+const BOT_TOKEN = process.env.BOT_TOKEN;
 
 
 // Initialising Telegram Bot with BOT_TOKEN from config/key.js file
@@ -38,7 +19,7 @@ const bot = new TelegramBot(BOT_TOKEN, {polling : true});
 logger.info('Instantiated Telegram Bot');
 
 
-// Handlifng errors (polling_error / webhook_error) for the Telegram Bot
+// Handling errors (polling_error / webhook_error) for the Telegram Bot
 bot.on('error', (err) => {
     logger.error({
         message : 'Telegram Bot Error',
