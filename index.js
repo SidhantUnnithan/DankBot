@@ -8,7 +8,7 @@ const memeHandler = require('./res/commands/meme');
 // const BOT_TOKEN = require('./config/key').TelegramBotToken;
 
 
-// HEROKU SPECIFIC VARIABLES
+// CLOUD SPECIFIC VARIABLES
 const PORT = process.env.PORT || 5000;
 const HOST = process.env.HOST;
 const BOT_TOKEN = process.env.BOT_TOKEN;
@@ -92,17 +92,5 @@ bot.onText(/\/memes/, msg => {
     
 })
 
-// Message Receieved
-bot.on('text', (msg, type) => {
-    
-    logger.info({
-        message : 'Message Received',
-        userid : msg.from.id,
-        username : msg.from.username,
-        text : msg.text
-    });
-
-    bot.sendMessage('That is not a valid command!')
-})
 
 
