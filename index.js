@@ -5,14 +5,14 @@ const mongoose = require('mongoose');
 
 // LOCAL IMPORTS
 const logger = require('./res/logger');
-const BOT_TOKEN = require('./config/key').TelegramBotToken;
 const MongoAtlasURL = require('./config/key').MongoAtlasURL;
 const memeHandler = require('./res/commands/meme');
 
 
-// LOCAL VARIABLES
+// HEROKU SPECIFIC VARIABLES
 const PORT = process.env.PORT || 5000;
 const HOST = process.env.HOST;
+const BOT_TOKEN = process.env.BOT_TOKEN || require('./config/key').TelegramBotToken;
 
 
 // Connecting Mongoose with MongoDB Atlas using MongoAtlasURL from config/key.js file
