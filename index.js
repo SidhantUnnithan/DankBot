@@ -60,6 +60,27 @@ bot.onText(/\/start/, (msg) => {
 })
 
 
+// User requested commands
+bot.onText(/\/commands/, msg => {
+
+    let userid = msg.from.id;
+    let username = msg.from.username;
+
+    logger.info({
+        message : '/commands command received',
+        userid : userid,
+        username : username
+    });
+
+    let message = 'The list of commands are-\n';
+    message += '/commands - See list of commands\n';
+    message += '/memes - Get a meme from Reddit';
+
+    bot.sendMessage(userid, message);
+
+});
+
+
 // User requested for memes
 bot.onText(/\/memes/, msg => {
 
