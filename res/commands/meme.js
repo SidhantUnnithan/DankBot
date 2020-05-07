@@ -40,7 +40,7 @@ var getMeme = callback => {
                 
                 // All OK Code
                 retPackage.code = 200;
-                apiResponse = JSON.parse(body);
+                let apiResponse = JSON.parse(body);
                 retPackage.url = apiResponse.url;
                 callback(retPackage);
 

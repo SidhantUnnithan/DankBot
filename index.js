@@ -5,15 +5,17 @@ const TelegramBot = require('node-telegram-bot-api');
 // LOCAL IMPORTS
 const logger = require('./res/logger');
 const memeHandler = require('./res/commands/meme');
-// const BOT_TOKEN = require('./config/key').TelegramBotToken;
+const xkcdHandler = require('./res/commands/xkcd');
+const BOT_TOKEN = require('./config/key').TelegramBotToken;
 
 
 // CLOUD SPECIFIC VARIABLES
 const PORT = process.env.PORT || 5000;
 const HOST = process.env.HOST;
-const BOT_TOKEN = process.env.BOT_TOKEN;
+// const BOT_TOKEN = process.env.BOT_TOKEN;
 
 console.log(BOT_TOKEN);
+console.log(process.env.NODE_ENV);
 
 // Initialising Telegram Bot with BOT_TOKEN from config/key.js file
 const bot = new TelegramBot(BOT_TOKEN, {polling : true});
@@ -55,8 +57,9 @@ bot.onText(/\/commands/, msg => {
     });
 
     let message = 'The list of commands are-\n';
-    message += '/commands - See list of commands\n';
-    message += '/memes - Get a meme from Reddit';
+    message += '/commands - Get a list of commands\n';
+    message += '/memes - Get a hot, baked meme from Reddit\n';
+    message += '/xkcd - Get an evergreen XKCD Web Comic';
 
     bot.sendMessage(userid, message);
 
@@ -91,6 +94,33 @@ bot.onText(/\/memes/, msg => {
         }
     });
     
+});
+
+bot.onText(/\/xkcd/, msg => {
+    let userid = msg.from.id;
+    let username = msg.from.username;
+
+    logger.info({
+        message : '/xkcd command received',
+        userid : userid,
+        username : username
+    });
+
+    xkcdHandler.getXKCD(retPackage => {
+        
+        if(retPackage.code == 400){
+            bot.sendMessage(userid, 'Error Retrieving meme. Please contact @SidhantUnnithan');
+        }
+        else{
+            
+            logger.info({
+                message : 'Received Meme Package',
+                package : retPackage
+            });
+
+            bot.sendPhoto(userid, retPackage.url);
+        }
+    });
 })
 
 

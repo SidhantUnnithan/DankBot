@@ -1,4 +1,5 @@
 module.exports = {
     memeURL : 'https://meme-api.herokuapp.com/gimme',
-    xkcdURL : 'https://xkcd.com/info.0.json'
+    xkcdBaseURL : 'https://xkcd.com',
+    xkcdURLSuffix : 'info.0.json'
 }
