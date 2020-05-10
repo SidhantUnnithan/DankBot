@@ -20,7 +20,7 @@ var transport = new (winston.transports.DailyRotateFile)({
     zippedArchive: true,
     utc : false,
     maxSize: '100m',
-    maxFiles: '10d',
+    maxFiles: '2d',
     level : 'info',
 });
 

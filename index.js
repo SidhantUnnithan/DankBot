@@ -6,6 +6,7 @@ const TelegramBot = require('node-telegram-bot-api');
 const logger = require('./res/logger');
 const memeHandler = require('./res/commands/meme');
 const xkcdHandler = require('./res/commands/xkcd');
+const insultHandler = require('./res/commands/insult');
 const BOT_TOKEN = require('./config/key').TelegramBotToken;
 
 
@@ -96,6 +97,7 @@ bot.onText(/\/memes/, msg => {
     
 });
 
+// User requested for XKCD Web Comic
 bot.onText(/\/xkcd/, msg => {
     let userid = msg.from.id;
     let username = msg.from.username;
@@ -109,7 +111,7 @@ bot.onText(/\/xkcd/, msg => {
     xkcdHandler.getXKCD(retPackage => {
         
         if(retPackage.code == 400){
-            bot.sendMessage(userid, 'Error Retrieving meme. Please contact @SidhantUnnithan');
+            bot.sendMessage(userid, 'Error Retrieving xkcd. Please contact @SidhantUnnithan');
         }
         else{
             
@@ -119,6 +121,34 @@ bot.onText(/\/xkcd/, msg => {
             });
 
             bot.sendPhoto(userid, retPackage.url);
+        }
+    });
+});
+
+// User requested for an insult
+bot.onText(/\/roast/, msg => {
+    let userid = msg.from.id;
+    let username = msg.from.username;
+
+    logger.info({
+        message : '/roast command received',
+        userid : userid,
+        username : username
+    });
+
+    insultHandler.getInsult(retPackage => {
+        
+        if(retPackage.code == 400){
+            bot.sendMessage(userid, 'Error Retrieving insult. Please contact @SidhantUnnithan');
+        }
+        else{
+            
+            logger.info({
+                message : 'Received Insult Package',
+                package : retPackage
+            });
+
+            bot.sendMessage(userid, retPackage.insult);
         }
     });
 })
