@@ -3,3 +3,4 @@ config
 logs
 Makefile
 connect.sh
+dank-bot-telegram.pem
