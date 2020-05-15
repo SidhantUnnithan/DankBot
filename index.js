@@ -16,7 +16,6 @@ const HOST = process.env.HOST;
 // const BOT_TOKEN = process.env.BOT_TOKEN;
 
 console.log(BOT_TOKEN);
-console.log(process.env.NODE_ENV);
 
 // Initialising Telegram Bot with BOT_TOKEN from config/key.js file
 const bot = new TelegramBot(BOT_TOKEN, {polling : true});

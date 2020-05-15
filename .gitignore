@@ -2,5 +2,5 @@ node_modules
 config
 logs
 Makefile
-connect.sh
+deploy.sh
 dank-bot-telegram.pem
