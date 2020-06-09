@@ -1,6 +1,0 @@
-.gitignore
-connect.sh
-Dockerfile
-Makefile
-logs
-node_modules
